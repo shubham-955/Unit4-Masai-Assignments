@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #countdown {
+        text-align: center;
+        font-size: 30px;
+        margin: 0px 5px;
+    }
+
+    .btn {
+        width: 60px;
+        height: 30px;
+        background-color: black;
+        color: white;
+        border-radius: 3px;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <p id="countdown">10:00</p>
+            <button class="btn-start btn">Start</button>
+            <button class="btn-stop btn">Stop</button>
+            <button class="btn-reset btn">Reset</button>
+        </div>
+    </div>
+    <script>
+        const startingMinutes = 10;
+        let time = startingMinutes * 60;
+        let btnStart = document.querySelector('.btn-start');
+        let btnStop = document.querySelector('.btn-stop');
+        let btnReset = document.querySelector('.btn-reset');
+        let interval;
+        btnStart.addEventListener('click', () => {
+            clearInterval(interval);
+            interval = setInterval(updateCountDown, 1000)
+        })
+        btnStop.addEventListener('click', () => {
+            clearInterval(interval);
+        })
+        btnReset.addEventListener('click', () => {
+            clearInterval(interval);
+            countdownEl.innerHTML = '10:00';
+        })
+
+        const countdownEl = document.getElementById('countdown');
+
+        function updateCountDown() {
+            time--;
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countdownEl.innerHTML = `${minutes}: ${seconds}`;
+        }
+    </script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .time {
+        text-align: center;
+    }
+
+    .seconds {
+        font-size: 30px;
+        margin: 0px 5px;
+    }
+
+    .tens {
+        font-size: 20px;
+        margin: 0px 5px;
+    }
+
+    .btn {
+        width: 60px;
+        height: 30px;
+        background-color: black;
+        color: white;
+        border-radius: 3px;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <p class="time">
+                <span class="seconds">00</span>:<span class="tens">00</span>
+            </p> <br>
+            <button class="btn-start btn">Start</button>
+            <button class="btn-stop btn">Stop</button>
+            <button class="btn-reset btn">Reset</button>
+        </div>
+    </div>
+    <script>
+        let seconds = 00;
+        let tens = 00;
+        let getSeconds = document.querySelector('.seconds');
+        let getTens = document.querySelector('.tens');
+        let btnStart = document.querySelector('.btn-start');
+        let btnStop = document.querySelector('.btn-stop');
+        let btnReset = document.querySelector('.btn-reset');
+        let interval;
+
+        btnStart.addEventListener('click', () => {
+            clearInterval(interval);
+            inverval = setInterval(startTimer, 10);
+        })
+        btnStop.addEventListener('click', () => {
+            clearInterval(inverval);
+        })
+        btnReset.addEventListener('click', () => {
+            clearInterval(inverval);
+            tens = '00';
+            seconds = '00';
+            getSeconds.innerHTML = seconds;
+            getTens.innerHTML = tens;
+        })
+
+        function startTimer() {
+            tens++;
+            if (tens <= 9) {
+                getTens.innerHTML = '0' + tens;
+            }
+            if (tens > 9) {
+                getTens.innerHTML = tens;
+            }
+            if (tens > 99) {
+                seconds++;
+                getSeconds.innerHTML = '0' + seconds;
+                tens = 0;
+                getTens.innerHTML = '0' + 0;
+            }
+            if (seconds > 9) {
+                getSeconds.innerHTML = seconds;
+            }
+            if (seconds > 59) {
+                mins++;
+                getMins.innerHTML = '0' + mins;
+                seconds = 0;
+                getSeconds.innerHTML = '0' + 0;
+            }
+        }
+    </script>
