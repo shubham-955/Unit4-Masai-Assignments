@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #container {
+        width: 100%;
+        height: 100vh;
+        background-color: yellow;
+    }
+</style>
+
+<body>
+    <div id="container">
+    </div>
+</body>
+
+</html>
+<script>
+    const output = document.querySelector('#container');
+    var colorArray = ["yellow", 'blue', 'red', 'green', 'black', 'orange', 'brown', 'violet', 'grey', 'pink']
+
+    function reportWindowSize() {
+        var number = Math.floor(Math.random() * 10);
+        output.style.backgroundColor = colorArray[number]
+    }
+
+    window.addEventListener('resize', reportWindowSize);
+
+</script>
